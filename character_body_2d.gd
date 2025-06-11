@@ -16,12 +16,6 @@ var direction: Vector2 = Vector2.ZERO # Stores input direction
 # --- Node References (Assign in _ready or by drag-and-drop) ---
 @onready var water_detector: Area2D = $WaterDetector # Assuming you have this node
 
-func _ready():
-	# Connect signals for water detection
-	if water_detector:
-		water_detector.body_entered.connect(_on_water_detector_body_entered)
-		water_detector.body_exited.connect(_on_water_detector_body_exited)
-
 func _physics_process(delta: float):
 	_get_input()
 
@@ -37,6 +31,7 @@ func _get_input():
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
 func _handle_swimming(delta: float):
+	print("swimming")
 	if is_in_water:
 		# Apply input direction with acceleration
 		velocity = velocity.lerp(direction * swim_speed, swim_acceleration * delta)
@@ -49,6 +44,7 @@ func _handle_swimming(delta: float):
 		_try_jump_or_fall()
 
 func _handle_jumping(delta: float):
+	print("jumping")
 	# Apply gravity
 	velocity.y += air_gravity * delta
 
@@ -74,17 +70,18 @@ func _try_jump_or_fall():
 		current_state = "JUMPING" # Or "FALLING" state if you want more granularity
 		# Don't apply jump_speed, just let gravity take over
 
-# --- Water Detection Callbacks (using Area2D) ---
-func _on_water_detector_body_entered(body: Node2D):
-	if body == self: # Ensure it's the dolphin entering its own water detector
-		is_in_water = true
-		# If entering water while jumping, transition back to swimming
-		if current_state == "JUMPING":
-			current_state = "SWIMMING"
-			velocity.y = 0 # Stop vertical momentum
 
-func _on_water_detector_body_exited(body: Node2D):
-	if body == self:
-		is_in_water = false
-		# When leaving water, check if a jump should be initiated
-		_try_jump_or_fall()
+func _on_water_detector_area_entered(area: Area2D) -> void:
+	print("enter area")
+	is_in_water = true
+	# If entering water while jumping, transition back to swimming
+	if current_state == "JUMPING":
+		current_state = "SWIMMING"
+		velocity.y = 0 # Stop vertical momentum
+
+
+func _on_water_detector_area_exited(area: Area2D) -> void:
+	print("exit area")
+	is_in_water = false
+	# When leaving water, check if a jump should be initiated
+	_try_jump_or_fall()

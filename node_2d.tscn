@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://5xgr8v8mcm5k" path="res://dolphin.tscn" id="3_epypp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(1289.5, 380.5)
+size = Vector2(1289.5, 231.25)
 
 [node name="Node2D" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-359.0]
@@ -37,10 +37,10 @@ scale = Vector2(0.288961, 0.278627)
 texture = ExtResource("2_0e48y")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_epypp")]
-position = Vector2(125, 119)
+position = Vector2(382, 427)
 
 [node name="WaterArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterArea"]
-position = Vector2(601.25, 489)
+position = Vector2(601.25, 563.625)
 shape = SubResource("RectangleShape2D_epypp")
