@@ -17,6 +17,9 @@ var direction: Vector2 = Vector2.ZERO
 @export var max_dive_duration: float = 1.0
 var dive_timer: float = 0.0
 var dive_force: float = 0.0
+var is_flipping: bool = false
+var flip_angle: float = 0.0
+var flip_speed: float = 720.0
 
 # --- Node References (Assign in _ready or by drag-and-drop) ---
 @onready var water_detector: Area2D = $WaterDetector # Assuming you have this node
@@ -34,6 +37,15 @@ func _physics_process(delta: float):
 		State.DIVING:
 			_handle_dive(delta)
 
+	if is_flipping:
+		var rotation_step = flip_speed * delta
+		sprite_holder.rotation += deg_to_rad(rotation_step)
+		flip_angle += rotation_step
+
+		if flip_angle >= 360.0:
+			is_flipping = false
+			sprite_holder.rotation = 0.0 # Reset rotation to upright
+			
 	move_and_slide() # Godot's built-in movement function
 
 func _get_input(delta):
@@ -42,9 +54,11 @@ func _get_input(delta):
 	if velocity.length() > 10:
 		var target_angle = velocity.angle()
 		sprite_holder.rotation = lerp_angle(sprite_holder.rotation, target_angle, delta * 5.0)
-	if direction.x != 0:
-		sprite.scale.y = -1 if direction.x < 0 else 1
-		
+		if abs(target_angle) > PI / 2:
+			sprite.scale.y = -1 
+		else:
+			sprite.scale.y = 1 
+			
 func _handle_swimming(delta: float):
 	if is_in_water:
 		# Apply input direction with acceleration
@@ -79,20 +93,14 @@ func _try_jump_or_fall():
 	elif !is_in_water and velocity.y >= -min_jump_speed_threshold:
 		current_state = State.JUMPING
 
-
 func _on_water_detector_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Water"):
 		is_in_water = true
 		if current_state == State.JUMPING and velocity.y > 0:
 			current_state = State.DIVING
-			
-			# Dive strength based on vertical speed (can also track jump 	apex if needed)
 			dive_force = clamp(velocity.y, swim_speed, swim_speed*2) # Or based on jump height
 			dive_timer = max_dive_duration * (dive_force / (swim_speed*2))
-
-		# Optionally reduce horizontal speed
 			velocity.x *= 0.8
-
 
 func _on_water_detector_area_exited(area: Area2D) -> void:
 	if area.is_in_group("Water"):
@@ -100,12 +108,9 @@ func _on_water_detector_area_exited(area: Area2D) -> void:
 		_try_jump_or_fall()
 
 func _handle_dive(delta: float):
-
-	dive_timer -= delta
-	
-	# Let dolphin continue downward with diminishing speed
+	dive_timer -= delta	
 	velocity.y += 3000 * delta
-
+	
 	# Prevent upward motion during dive
 	if direction.y < 0:
 		direction.y = 0
@@ -116,3 +121,21 @@ func _handle_dive(delta: float):
 
 	if dive_timer <= 0.0:
 		current_state = State.SWIMMING
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("flip"):
+		do_flip()
+		
+func do_flip():
+	if current_state == State.JUMPING :
+		is_flipping = true
+		flip_angle = 0.0
+		
+		var rotation_step = 1
+		sprite_holder.rotation += deg_to_rad(rotation_step)
+		flip_angle += rotation_step
+
+		if flip_angle >= 360.0:
+			is_flipping = false
+			sprite_holder.rotation = 0.0
+		

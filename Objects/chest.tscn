@@ -12,8 +12,6 @@ script = ExtResource("1_s3ywg")
 [node name="chestSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_7ujht")
 animation = &"open"
-frame = 2
-frame_progress = 1.0
 
 [node name="BubblesSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -17)

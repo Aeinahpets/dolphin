@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct7a7b030skcu"]
+
+[ext_resource type="Texture2D" uid="uid://bg5tkbx7ulju4" path="res://Objects/hoop.png" id="1_mbqxa"]
+[ext_resource type="Script" uid="uid://3q0dg1juufog" path="res://Objects/hoop.gd" id="1_p37ie"]
+[ext_resource type="AudioStream" uid="uid://b2sl2xuvhk145" path="res://sounds/pickupsound.wav" id="3_gh477"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbqxa"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_p37ie"]
+resource_name = "grab"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hoop:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.388235, 0.388235, 0.388235, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gh477"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hoop:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i05w3"]
+_data = {
+&"RESET": SubResource("Animation_gh477"),
+&"grab": SubResource("Animation_p37ie")
+}
+
+[node name="Hoop" type="Node2D"]
+script = ExtResource("1_p37ie")
+
+[node name="Hoop" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_mbqxa")
+
+[node name="Area2D" type="Area2D" parent="." groups=["hoop"]]
+collision_layer = 4
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1, 2)
+shape = SubResource("CircleShape2D_mbqxa")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_gh477")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i05w3")
+}
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
