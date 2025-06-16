@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://5xgr8v8mcm5k"]
+[gd_scene load_steps=15 format=3 uid="uid://5xgr8v8mcm5k"]
 
 [ext_resource type="Script" uid="uid://0bdpuxjxmqwl" path="res://Dolphin/dolphin.gd" id="1_0oef7"]
-[ext_resource type="Texture2D" uid="uid://88btjpm4h6mm" path="res://SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Shark - 32x32/Shark.png" id="2_gcysa"]
+[ext_resource type="Texture2D" uid="uid://88btjpm4h6mm" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Shark - 32x32/Shark.png" id="2_gcysa"]
+[ext_resource type="PackedScene" uid="uid://bpgv5mrahrhva" path="res://Dolphin/echo_pulse.tscn" id="3_tmrix"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_epypp"]
 radius = 15.1327
@@ -78,7 +79,7 @@ collision_mask = 3
 script = ExtResource("1_0oef7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_speed = 7.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -97,6 +98,8 @@ debug_color = Color(0.837622, 0.312714, 0.585028, 0.42)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="spriteHolder"]
 sprite_frames = SubResource("SpriteFrames_emnxw")
 animation = &"swim"
+
+[node name="EchoPulse" parent="." instance=ExtResource("3_tmrix")]
 
 [connection signal="area_entered" from="WaterDetector" to="." method="_on_water_detector_area_entered"]
 [connection signal="area_exited" from="WaterDetector" to="." method="_on_water_detector_area_exited"]

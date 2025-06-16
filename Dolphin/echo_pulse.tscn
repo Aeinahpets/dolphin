@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpgv5mrahrhva"]
+
+[ext_resource type="Texture2D" uid="uid://cph3k0g6gjgxc" path="res://Dolphin/sonar_pulse_texture.png" id="1_awnp1"]
+[ext_resource type="Script" uid="uid://cwvpfnajbh6hi" path="res://Dolphin/echo_pulse.gd" id="2_rd15n"]
+
+[node name="EchoPulse" type="PointLight2D"]
+texture = ExtResource("1_awnp1")
+script = ExtResource("2_rd15n")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bsd8l1nact4kl"]
 
-[ext_resource type="Texture2D" uid="uid://crbylqsbfay6e" path="res://SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Clam - 16x16.png" id="1_xtpl2"]
-[ext_resource type="Texture2D" uid="uid://m3u1ur44hdk7" path="res://SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Bubble - 8x8.png" id="2_e8jxl"]
+[ext_resource type="Texture2D" uid="uid://crbylqsbfay6e" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Clam - 16x16.png" id="1_xtpl2"]
+[ext_resource type="Texture2D" uid="uid://m3u1ur44hdk7" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Bubble - 8x8.png" id="2_e8jxl"]
 
 [sub_resource type="Animation" id="Animation_46k08"]
 length = 0.001
