@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://ssm75mtmj3g3"]
 
-[ext_resource type="Texture2D" uid="uid://ku2d86groe11" path="res://SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Chests-16x32.png" id="1_aly10"]
-[ext_resource type="Texture2D" uid="uid://m3u1ur44hdk7" path="res://SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Bubble - 8x8.png" id="1_k6q56"]
+[ext_resource type="Texture2D" uid="uid://ku2d86groe11" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Chests-16x32.png" id="1_aly10"]
+[ext_resource type="Texture2D" uid="uid://m3u1ur44hdk7" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Bubble - 8x8.png" id="1_k6q56"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gsv2i"]
 atlas = ExtResource("1_k6q56")
