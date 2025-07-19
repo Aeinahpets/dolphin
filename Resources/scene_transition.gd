@@ -5,7 +5,6 @@ var scene_target
 
 func change_scene(target: String) ->void:
 	scene_target = target
-	print("change")
 	animation_player.play("transition")
 	await animation_player.animation_finished
 	

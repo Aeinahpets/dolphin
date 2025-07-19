@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cow3ng52xe2ow" path="res://DownloadedAsset/underwater-fantasy-files/PNG/layers/foreground-1.png" id="4_7ys0u"]
 [ext_resource type="Texture2D" uid="uid://bmbf22pgukvao" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/SeaWeed - 16x32/Medium.png" id="5_r7fn1"]
 [ext_resource type="Texture2D" uid="uid://bmwgwitjowvum" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Corals - 16x16/Corals.png" id="6_7ys0u"]
-[ext_resource type="PackedScene" uid="uid://dub47pjvf1lmt" path="res://Objects/chest.tscn" id="7_cffj3"]
-[ext_resource type="PackedScene" uid="uid://ct7a7b030skcu" path="res://Objects/hoop.tscn" id="8_63oj5"]
+[ext_resource type="PackedScene" uid="uid://dub47pjvf1lmt" path="res://Objects/chest/chest.tscn" id="7_cffj3"]
+[ext_resource type="PackedScene" uid="uid://ct7a7b030skcu" path="res://Objects/hoop/hoop.tscn" id="8_63oj5"]
 [ext_resource type="PackedScene" uid="uid://bsd8l1nact4kl" path="res://Objects/clam.tscn" id="9_1v84g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r0du0"]

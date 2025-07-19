@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg5tkbx7ulju4"
-path="res://.godot/imported/hoop.png-05d3a79000885f5f0c3ea1e32463ae72.ctex"
+uid="uid://c2vwnj65wuypc"
+path="res://.godot/imported/icon.png-c3c187b68998dd20bffe0c503fe6168a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Objects/hoop.png"
-dest_files=["res://.godot/imported/hoop.png-05d3a79000885f5f0c3ea1e32463ae72.ctex"]
+source_file="res://water/examples/dynamic_water_2d/icon.png"
+dest_files=["res://.godot/imported/icon.png-c3c187b68998dd20bffe0c503fe6168a.ctex"]
 
 [params]
 

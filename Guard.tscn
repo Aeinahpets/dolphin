@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dex1ecx6aqtly"]
+
+[ext_resource type="Texture2D" uid="uid://bigvgkjj5wgw4" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Diver-32x32/Diver 1.png" id="1_rpvx7"]
+
+[node name="Diver1" type="Sprite2D"]
+texture = ExtResource("1_rpvx7")
+hframes = 7
+vframes = 4

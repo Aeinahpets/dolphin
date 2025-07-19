@@ -26,6 +26,8 @@ var flip_speed: float = 720.0
 @onready var sprite: AnimatedSprite2D = $spriteHolder/AnimatedSprite2D
 @onready var sprite_holder: Node2D = $spriteHolder
 
+var confetti_scene = preload("res://Objects/Confetti.tscn")
+
 func _physics_process(delta: float):
 	_get_input(delta)
 
@@ -46,7 +48,9 @@ func _physics_process(delta: float):
 			is_flipping = false
 			sprite_holder.rotation = 0.0 # Reset rotation to upright
 			
-	move_and_slide() # Godot's built-in movement function
+	move_and_slide()
+	
+	apply_hit_force()
 
 func _get_input(delta):
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -95,6 +99,7 @@ func _try_jump_or_fall():
 
 func _on_water_detector_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Water"):
+		GameManager.is_in_water.emit(true)
 		is_in_water = true
 		if current_state == State.JUMPING and velocity.y > 0:
 			current_state = State.DIVING
@@ -104,6 +109,7 @@ func _on_water_detector_area_entered(area: Area2D) -> void:
 
 func _on_water_detector_area_exited(area: Area2D) -> void:
 	if area.is_in_group("Water"):
+		GameManager.is_in_water.emit(false)
 		is_in_water = false
 		_try_jump_or_fall()
 
@@ -138,4 +144,17 @@ func do_flip():
 		if flip_angle >= 360.0:
 			is_flipping = false
 			sprite_holder.rotation = 0.0
+
+func apply_hit_force():
+	for i in get_slide_collision_count():
 		
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is RigidBody2D:
+			# Apply impulse to ball based on movement direction
+			var ball := collider as RigidBody2D
+			ball.apply_central_impulse(direction * 30)
+			var confetti = confetti_scene.instantiate()
+			confetti.global_position = collision.get_position()
+			get_tree().current_scene.add_child(confetti)
+			confetti.emitting = true

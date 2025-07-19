@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var hoop = preload("res://Objects/hoop.tscn")
+@onready var hoop = preload("res://Objects/hoop/hoop.tscn")
 
 func spawn_hoops():
 	var new_hoop = hoop.instantiate()

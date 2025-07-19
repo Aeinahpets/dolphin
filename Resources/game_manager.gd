@@ -1,6 +1,8 @@
 # GameManager.gd
 extends Node
 
+signal is_in_water
+
 var current_part = 1
 var unlocked_abilities = {
 	"flip": true,

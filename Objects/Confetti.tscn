@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba38vxeoi1c0h"]
+
+[sub_resource type="Gradient" id="Gradient_p4072"]
+offsets = PackedFloat32Array(0, 0.206667, 0.44, 0.666667, 0.84, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.435294, 0.00392157, 1, 1, 1, 0.0431373, 1, 0, 0.882353, 0, 1, 0.203922, 0.298039, 1, 1, 0.686275, 0, 0.745098, 1)
+
+[node name="Confetti" type="CPUParticles2D"]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 250.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color_initial_ramp = SubResource("Gradient_p4072")

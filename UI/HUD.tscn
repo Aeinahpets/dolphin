@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://dirfn5jjv2xua"]
+[gd_scene load_steps=2 format=3 uid="uid://dirfn5jjv2xua"]
+
+[ext_resource type="Script" uid="uid://bmmshhtq8erfn" path="res://UI/hud.gd" id="1_yixhe"]
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_yixhe")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 25.0
@@ -9,3 +12,23 @@ offset_right = 176.0
 offset_bottom = 75.0
 theme_override_font_sizes/font_size = 50
 text = "Points"
+
+[node name="Oxigen" type="HBoxContainer" parent="."]
+offset_left = 968.0
+offset_top = 27.0
+offset_right = 1125.0
+offset_bottom = 69.0
+
+[node name="Label" type="Label" parent="Oxigen"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Oxigen"
+
+[node name="Amount" type="Label" parent="Oxigen"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="O2Timer" type="Timer" parent="Oxigen"]
+
+[connection signal="timeout" from="Oxigen/O2Timer" to="." method="_on_o_2_timer_timeout"]

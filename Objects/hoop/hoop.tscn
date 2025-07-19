@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ct7a7b030skcu"]
 
-[ext_resource type="Texture2D" uid="uid://bg5tkbx7ulju4" path="res://Objects/hoop.png" id="1_mbqxa"]
-[ext_resource type="Script" uid="uid://3q0dg1juufog" path="res://Objects/hoop.gd" id="1_p37ie"]
+[ext_resource type="Texture2D" uid="uid://bg5tkbx7ulju4" path="res://Objects/hoop/hoop.png" id="1_mbqxa"]
+[ext_resource type="Script" uid="uid://3q0dg1juufog" path="res://Objects/hoop/hoop.gd" id="1_p37ie"]
 [ext_resource type="AudioStream" uid="uid://b2sl2xuvhk145" path="res://sounds/pickupsound.wav" id="3_gh477"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mbqxa"]
