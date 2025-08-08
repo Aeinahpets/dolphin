@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bqbs8sfj7xuy3"]
+[gd_scene load_steps=14 format=4 uid="uid://bqbs8sfj7xuy3"]
 
 [ext_resource type="Script" uid="uid://cdv0up8347d74" path="res://Levels/1stage/stage.gd" id="1_npxvv"]
 [ext_resource type="PackedScene" uid="uid://dirfn5jjv2xua" path="res://UI/HUD.tscn" id="2_a5hwm"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://5qwjnl6b2gm5" path="res://Objects/door.tscn" id="8_ceexc"]
 [ext_resource type="PackedScene" uid="uid://dsmgw363qfa07" path="res://Objects/Button/Button.tscn" id="9_i5mn7"]
 [ext_resource type="PackedScene" uid="uid://c8q3a4xbbynx4" path="res://Objects/Ball/Ball.tscn" id="10_a5hwm"]
+[ext_resource type="PackedScene" uid="uid://583ir1avj42l" path="res://Objects/Jets/JetStream.tscn" id="11_jnmxm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpfvq"]
 texture = ExtResource("5_qtr8r")
@@ -248,5 +249,8 @@ position = Vector2(650, 188)
 
 [node name="Ball" parent="." instance=ExtResource("10_a5hwm")]
 position = Vector2(606, 165)
+
+[node name="JetStream" parent="." instance=ExtResource("11_jnmxm")]
+position = Vector2(149, 357)
 
 [connection signal="timeout" from="Spawner/HoopTimer" to="." method="_on_hoop_timer_timeout"]

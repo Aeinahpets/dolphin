@@ -26,11 +26,10 @@ var flip_speed: float = 720.0
 @onready var sprite: AnimatedSprite2D = $spriteHolder/AnimatedSprite2D
 @onready var sprite_holder: Node2D = $spriteHolder
 
-var confetti_scene = preload("res://Objects/Confetti.tscn")
+var confetti_scene = preload("res://Objects/Ball/Confetti.tscn")
 
 func _physics_process(delta: float):
 	_get_input(delta)
-
 	match current_state:
 		State.SWIMMING:
 			_handle_swimming(delta)
@@ -55,8 +54,8 @@ func _physics_process(delta: float):
 func _get_input(delta):
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-	if velocity.length() > 10:
-		var target_angle = velocity.angle()
+	if direction.length() > 0.1:
+		var target_angle = direction.angle()
 		sprite_holder.rotation = lerp_angle(sprite_holder.rotation, target_angle, delta * 5.0)
 		if abs(target_angle) > PI / 2:
 			sprite.scale.y = -1 
