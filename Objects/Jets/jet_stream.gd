@@ -1,12 +1,17 @@
 extends Area2D
 
 # Direction and strength of push
+@onready var water_particles: CPUParticles2D = $WaterParticles
+
 @export var push_direction: Vector2 = Vector2.RIGHT
 @export var push_force: float = 200.0
 
 # Store bodies currently inside
 var bodies_in_stream: Array = []
 
+func _ready() -> void:
+	push_direction = push_direction.rotated(rotation).normalized()
+	
 func _physics_process(delta):
 	for body in bodies_in_stream:
 		body.velocity += push_direction.normalized() * push_force 

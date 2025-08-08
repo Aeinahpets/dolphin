@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c45osybi6nfwx" path="res://Objects/Jets/jet_stream.gd" id="1_p14ip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua404"]
-size = Vector2(338.25, 55)
+size = Vector2(403.25, 39)
 
 [sub_resource type="Gradient" id="Gradient_p14ip"]
 offsets = PackedFloat32Array(0, 0.553333, 1)
@@ -13,12 +13,12 @@ colors = PackedColorArray(0.116019, 0.771987, 0.978078, 1, 2.21401e-06, 0.495831
 script = ExtResource("1_p14ip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(169.875, 0)
+position = Vector2(202.375, 0.5)
 shape = SubResource("RectangleShape2D_ua404")
 
 [node name="WaterParticles" type="CPUParticles2D" parent="."]
 amount = 500
-lifetime = 2.0
+lifetime = 3.0
 emission_shape = 3
 emission_rect_extents = Vector2(0, 10)
 spread = 3.0

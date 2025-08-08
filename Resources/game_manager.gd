@@ -2,6 +2,7 @@
 extends Node
 
 signal is_in_water
+signal is_damaged
 
 var current_part = 1
 var unlocked_abilities = {

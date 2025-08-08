@@ -8,6 +8,7 @@ var current_oxigen := 0
 
 func _ready() -> void:
 	GameManager.is_in_water.connect(manage_oxigen)
+	GameManager.is_damaged.connect(reduce_oxigen)
 	current_oxigen = max_oxigen
 	oxigen_amount.text = str(current_oxigen)
 
@@ -21,9 +22,11 @@ func manage_oxigen(in_water):
 		o_2_timer.stop()
 		oxigen_amount.text = str(current_oxigen)
 
+func reduce_oxigen(amount):
+	if current_oxigen>0:
+		current_oxigen -= amount
+		oxigen_amount.text = str(current_oxigen)
 	
 
 func _on_o_2_timer_timeout() -> void:
-	if current_oxigen>0:
-		current_oxigen -=1
-		oxigen_amount.text = str(current_oxigen)
+	reduce_oxigen(1)

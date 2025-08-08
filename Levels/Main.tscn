@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://clmesdb7rpk8p"]
+[gd_scene load_steps=20 format=4 uid="uid://clmesdb7rpk8p"]
 
 [ext_resource type="PackedScene" uid="uid://bw7bnnnmpb4o" path="res://Objects/water.tscn" id="1_r6vcu"]
 [ext_resource type="Texture2D" uid="uid://du4y306j4cckw" path="res://DownloadedAsset/underwater-fantasy-files/PNG/layers/far.png" id="2_2lumg"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dub47pjvf1lmt" path="res://Objects/chest/chest.tscn" id="7_cffj3"]
 [ext_resource type="PackedScene" uid="uid://ct7a7b030skcu" path="res://Objects/hoop/hoop.tscn" id="8_63oj5"]
 [ext_resource type="PackedScene" uid="uid://bsd8l1nact4kl" path="res://Objects/clam.tscn" id="9_1v84g"]
+[ext_resource type="PackedScene" uid="uid://dwcgv8e6q4tfv" path="res://Objects/Spikes/Spike.tscn" id="13_r7fn1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r0du0"]
 texture = ExtResource("3_qjlnc")
@@ -420,3 +421,6 @@ position = Vector2(871, 250)
 
 [node name="Clam" parent="." instance=ExtResource("9_1v84g")]
 position = Vector2(457, 553)
+
+[node name="Spike" parent="." instance=ExtResource("13_r7fn1")]
+position = Vector2(532, 573)

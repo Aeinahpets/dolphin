@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dwcgv8e6q4tfv"]
+
+[node name="Spike" type="Area2D" groups=["Spike"]]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(1, 0, 1, 1)
+polygon = PackedVector2Array(-32, -16, -48, 0, 48, 0, 32, -16, 16, -2, 0, -16, -16, -2)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-32, -16, -48, 0, -16, 0, -13.0441, 0, 16, 0, 48, 0, 32, -16, 16, -2, 0, -16, -16, -2)

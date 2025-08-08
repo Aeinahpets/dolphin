@@ -30,6 +30,7 @@ var confetti_scene = preload("res://Objects/Ball/Confetti.tscn")
 
 func _physics_process(delta: float):
 	_get_input(delta)
+	
 	match current_state:
 		State.SWIMMING:
 			_handle_swimming(delta)
@@ -105,6 +106,9 @@ func _on_water_detector_area_entered(area: Area2D) -> void:
 			dive_force = clamp(velocity.y, swim_speed, swim_speed*2) # Or based on jump height
 			dive_timer = max_dive_duration * (dive_force / (swim_speed*2))
 			velocity.x *= 0.8
+	if area.is_in_group("Spike"):
+		GameManager.is_damaged.emit(20)
+		
 
 func _on_water_detector_area_exited(area: Area2D) -> void:
 	if area.is_in_group("Water"):

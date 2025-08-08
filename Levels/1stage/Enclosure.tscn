@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://dqf47y6vxvfs4"]
+[gd_scene load_steps=9 format=4 uid="uid://dqf47y6vxvfs4"]
 
 [ext_resource type="PackedScene" uid="uid://bw7bnnnmpb4o" path="res://Objects/water.tscn" id="1_yarha"]
 [ext_resource type="Texture2D" uid="uid://cyyg1trkv7uxb" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Tiles - 16x16/Abyss.png" id="2_285aa"]
 [ext_resource type="PackedScene" uid="uid://5xgr8v8mcm5k" path="res://Dolphin/orca.tscn" id="3_sr85m"]
 [ext_resource type="PackedScene" uid="uid://dex1ecx6aqtly" path="res://Guard.tscn" id="4_yqkap"]
 [ext_resource type="PackedScene" uid="uid://583ir1avj42l" path="res://Objects/Jets/JetStream.tscn" id="5_285aa"]
+[ext_resource type="PackedScene" uid="uid://dwcgv8e6q4tfv" path="res://Objects/Spikes/Spike.tscn" id="6_sr85m"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bupcr"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sr85m"]
 texture = ExtResource("2_285aa")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -186,7 +187,7 @@ physics_layer_0/collision_layer = 2
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "stone"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_bupcr")
+sources/0 = SubResource("TileSetAtlasSource_sr85m")
 
 [node name="Enclosure" type="Node2D"]
 
@@ -207,4 +208,8 @@ position = Vector2(262, 481)
 position = Vector2(335, 212)
 
 [node name="JetStream" parent="." instance=ExtResource("5_285aa")]
-position = Vector2(173, 382)
+position = Vector2(131, 388)
+
+[node name="Spike" parent="." instance=ExtResource("6_sr85m")]
+position = Vector2(345, 468)
+rotation = -1.11384
