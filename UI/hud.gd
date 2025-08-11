@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var oxigen_amount: Label = $Oxigen/Amount
 @onready var o_2_timer: Timer = $Oxigen/O2Timer
+@onready var progress_bar: ProgressBar = $ProgressBar
 
 var max_oxigen:= 100
 var current_oxigen := 0
@@ -9,6 +10,7 @@ var current_oxigen := 0
 func _ready() -> void:
 	GameManager.is_in_water.connect(manage_oxigen)
 	GameManager.is_damaged.connect(reduce_oxigen)
+	GameManager.hit_object.connect(on_object_hit)
 	current_oxigen = max_oxigen
 	oxigen_amount.text = str(current_oxigen)
 
@@ -22,11 +24,19 @@ func manage_oxigen(in_water):
 		o_2_timer.stop()
 		oxigen_amount.text = str(current_oxigen)
 
+func _on_o_2_timer_timeout() -> void:
+	reduce_oxigen(1)
+	reduce_applause(2)
+	
 func reduce_oxigen(amount):
 	if current_oxigen>0:
 		current_oxigen -= amount
 		oxigen_amount.text = str(current_oxigen)
-	
 
-func _on_o_2_timer_timeout() -> void:
-	reduce_oxigen(1)
+func reduce_applause(amount):
+	progress_bar.value -= amount
+
+func on_object_hit(obj, pos):
+	progress_bar.value += 5
+	
+	

@@ -107,4 +107,3 @@ scale = Vector2(0.351563, 0.351563)
 [connection signal="area_entered" from="WaterDetector" to="." method="_on_water_detector_area_entered"]
 [connection signal="area_exited" from="WaterDetector" to="." method="_on_water_detector_area_exited"]
 [connection signal="body_entered" from="WaterDetector" to="." method="_on_water_detector_body_entered"]
-[connection signal="body_exited" from="WaterDetector" to="." method="_on_water_detector_body_exited"]

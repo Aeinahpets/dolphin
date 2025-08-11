@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bw7bnnnmpb4o" path="res://Objects/water.tscn" id="1_r6vcu"]
 [ext_resource type="Texture2D" uid="uid://du4y306j4cckw" path="res://DownloadedAsset/underwater-fantasy-files/PNG/layers/far.png" id="2_2lumg"]
-[ext_resource type="PackedScene" uid="uid://5xgr8v8mcm5k" path="res://Dolphin/orca.tscn" id="2_6hska"]
+[ext_resource type="PackedScene" uid="uid://5xgr8v8mcm5k" path="res://Dolphin/dolphin.tscn" id="2_6hska"]
 [ext_resource type="Texture2D" uid="uid://bypuqa70nsc5g" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Tiles - 16x16/Sand.png" id="3_qjlnc"]
 [ext_resource type="Texture2D" uid="uid://cp7q4i3rq36qk" path="res://DownloadedAsset/underwater-fantasy-files/PNG/layers/sand.png" id="3_r7fn1"]
 [ext_resource type="Texture2D" uid="uid://boti7yrfgu65g" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/SeaWeed - 16x32/Pink.png" id="4_2lumg"]

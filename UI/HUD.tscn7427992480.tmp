@@ -5,6 +5,14 @@
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_yixhe")
 
+[node name="Label" type="Label" parent="."]
+offset_left = 25.0
+offset_top = 6.0
+offset_right = 176.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 50
+text = "Points"
+
 [node name="Oxigen" type="HBoxContainer" parent="."]
 offset_left = 968.0
 offset_top = 27.0
@@ -24,22 +32,13 @@ text = "100"
 [node name="O2Timer" type="Timer" parent="Oxigen"]
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = 64.0
-offset_top = 126.0
-offset_right = 116.0
-offset_bottom = 550.0
+offset_left = 42.0
+offset_top = 564.0
+offset_right = 490.0
+offset_bottom = 591.0
+rotation = -1.57079
 step = 1.0
 value = 50.0
-fill_mode = 3
 show_percentage = false
-
-[node name="Applause" type="Label" parent="."]
-offset_left = 4.0
-offset_top = 429.0
-offset_right = 183.0
-offset_bottom = 484.0
-rotation = -1.5708
-theme_override_font_sizes/font_size = 40
-text = "Applause"
 
 [connection signal="timeout" from="Oxigen/O2Timer" to="." method="_on_o_2_timer_timeout"]

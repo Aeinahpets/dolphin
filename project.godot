@@ -13,6 +13,7 @@ config_version=5
 config/name="dolphin"
 run/main_scene="uid://bqbs8sfj7xuy3"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,7 +23,7 @@ SceneTransition="*res://Resources/SceneTransition.tscn"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
 [input]
