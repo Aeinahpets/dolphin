@@ -31,6 +31,47 @@ text = "Continue"
 layout_mode = 2
 text = "Quit"
 
+[node name="PanelSlots" type="Panel" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/PanelSlots"]
+layout_mode = 1
+offset_left = -238.0
+offset_top = -163.0
+offset_right = 249.0
+offset_bottom = 126.0
+
+[node name="SaveSlotsContainer" type="VBoxContainer" parent="CenterContainer/PanelSlots"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -231.0
+offset_top = -158.0
+offset_right = 238.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Save1" type="Button" parent="CenterContainer/PanelSlots/SaveSlotsContainer"]
+layout_mode = 2
+text = "Save1"
+icon_alignment = 1
+
+[node name="Save2" type="Button" parent="CenterContainer/PanelSlots/SaveSlotsContainer"]
+layout_mode = 2
+text = "Save2"
+
+[node name="Save3" type="Button" parent="CenterContainer/PanelSlots/SaveSlotsContainer"]
+layout_mode = 2
+text = "Save3"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Ocean" to="." method="_on_ocean_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelSlots/SaveSlotsContainer/Save1" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelSlots/SaveSlotsContainer/Save2" to="." method="_on_ocean_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelSlots/SaveSlotsContainer/Save3" to="." method="_on_continue_pressed"]

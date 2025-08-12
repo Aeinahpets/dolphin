@@ -3,6 +3,8 @@ extends Node2D
 @onready var hoop = preload("res://Objects/hoop/hoop.tscn")
 @onready var ball = preload("res://Objects/Ball/Ball.tscn")
 @onready var spawner: Node2D = $Spawner
+@onready var audio: AudioStreamPlayer2D = $Audio
+@onready var hoop_timer: Timer = $Spawner/HoopTimer
 
 var available_spawn_points: Array = []
 var taken_spawn_points: Array = []
@@ -10,6 +12,7 @@ var spawn_ball := true
 
 func _ready() -> void:
 	GameManager.hit_object.connect(object_hit)
+	GameManager.end_stage.connect(on_end_show)
 	for marker in spawner.get_children():
 		if marker is Marker2D:
 			available_spawn_points.append(marker.global_position)
@@ -34,5 +37,9 @@ func _on_hoop_timer_timeout() -> void:
 		spawn_objects()
 
 func object_hit(object, point):
+	audio.play()
 	available_spawn_points.append(point)
 	taken_spawn_points.erase(point)
+
+func on_end_show(win_stage):
+	hoop_timer.stop()

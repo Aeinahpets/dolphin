@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var input_active:= true
+
 # --- Exported Variables (Tweak in Inspector) ---
 @export var swim_speed: float =300.0
 @export var swim_acceleration: float = 20.0
@@ -32,25 +34,29 @@ var flip_speed: float = 720.0
 
 var confetti_scene = preload("res://Objects/Ball/Confetti.tscn")
 
+func _ready() -> void:
+	GameManager.end_stage.connect(on_end_stage)
+	
 func _physics_process(delta: float):
-	_get_input(delta)
-	match current_state:
-		State.SWIMMING:
-			_handle_swimming(delta)
-		State.JUMPING:
-			_handle_jumping(delta)
-		State.DIVING:
-			_handle_dive(delta)
+	if input_active or not is_in_water:
+		_get_input(delta)
+		match current_state:
+			State.SWIMMING:
+				_handle_swimming(delta)
+			State.JUMPING:
+				_handle_jumping(delta)
+			State.DIVING:
+					_handle_dive(delta)
 
-	if is_flipping:
-		var rotation_step = flip_speed * delta
-		sprite_holder.rotation += deg_to_rad(rotation_step)
-		flip_angle += rotation_step
+		if is_flipping:
+			var rotation_step = flip_speed * delta
+			sprite_holder.rotation += deg_to_rad(rotation_step)
+			flip_angle += rotation_step
 
-		if flip_angle >= 360.0:
-			is_flipping = false
-			sprite_holder.rotation = 0.0 # Reset rotation to upright
-	move_and_slide()
+			if flip_angle >= 360.0:
+				is_flipping = false
+				sprite_holder.rotation = 0.0 # Reset rotation to upright
+		move_and_slide()
 			
 func _get_input(delta):
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -148,11 +154,13 @@ func do_flip():
 
 func _on_water_detector_body_entered(body: Node2D) -> void:
 	if body.is_in_group("ball"):
+		body.get_parent().hit_ball()
 		body.apply_central_impulse(direction * 30)
 		var confetti = confetti_scene.instantiate()
 		confetti.global_position = body.global_position
 		get_tree().current_scene.add_child(confetti)
 		confetti.emitting = true
 		GameManager.hit_object.emit(self, position)
-		await get_tree().create_timer(1).timeout
-		body.get_parent().queue_free()
+
+func on_end_stage(win_stage):
+	input_active = false

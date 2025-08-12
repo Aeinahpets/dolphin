@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dirfn5jjv2xua"]
+[gd_scene load_steps=3 format=3 uid="uid://dirfn5jjv2xua"]
 
 [ext_resource type="Script" uid="uid://bmmshhtq8erfn" path="res://UI/hud.gd" id="1_yixhe"]
+[ext_resource type="PackedScene" uid="uid://bl51gyns4xqay" path="res://Menus/end_screen.tscn" id="2_ijstf"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_yixhe")
@@ -41,5 +42,7 @@ offset_bottom = 484.0
 rotation = -1.5708
 theme_override_font_sizes/font_size = 40
 text = "Applause"
+
+[node name="EndScreen" parent="." instance=ExtResource("2_ijstf")]
 
 [connection signal="timeout" from="Oxigen/O2Timer" to="." method="_on_o_2_timer_timeout"]

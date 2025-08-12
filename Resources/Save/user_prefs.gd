@@ -1,14 +1,10 @@
 class_name UserPreferences extends Resource
 
-@export_range(0, 1, 0.05) var music_audio_level: float = 1.0
-@export_range(0, 1, 0.05) var sfx_audio_level: float = 1.0
-@export_range(0, 1, 0.05) var master_audio_level: float = 1.0
-@export_range(0, 1, 0.05) var ui_audio_level: float = 1.0
-@export var language: int = 0
-@export var cheats_on := false
+#Scene Data
+var save_name: String = "No Name"
+var save_timestamp: float = 0.0
+var current_scene: StringName
 
-func save() -> void:
-	ResourceSaver.save(self, "user://user_prefs.tres")
 	
 static func load_or_create() -> UserPreferences:
 	var file_path = "user://user_prefs.tres"
@@ -16,3 +12,16 @@ static func load_or_create() -> UserPreferences:
 	if !res:
 		res = UserPreferences.new()
 	return res
+
+
+# Save this resource to a given path
+func save_to_path(path: String) -> Error:
+	return ResourceSaver.save(self, path)
+
+# Static: Load from path or return new instance
+static func load_from_path(path: String) -> UserPreferences:
+	var res = load(path) as UserPreferences
+	if res:
+		return res
+	else:
+		return UserPreferences.new()

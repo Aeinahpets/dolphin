@@ -14,8 +14,6 @@ func _ready() -> void:
 	current_oxigen = max_oxigen
 	oxigen_amount.text = str(current_oxigen)
 
-
-	
 func manage_oxigen(in_water):
 	if in_water:		
 		o_2_timer.start()
@@ -34,9 +32,15 @@ func reduce_oxigen(amount):
 		oxigen_amount.text = str(current_oxigen)
 
 func reduce_applause(amount):
-	progress_bar.value -= amount
-
+	if progress_bar.value>0:
+		progress_bar.value -= amount
+	else:
+		GameManager.end_stage.emit(false)
+		
 func on_object_hit(obj, pos):
-	progress_bar.value += 5
+	progress_bar.value += 10
+	if progress_bar.value >= progress_bar.max_value:
+		GameManager.end_stage.emit(true)
+
 	
 	

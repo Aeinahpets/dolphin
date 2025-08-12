@@ -7,3 +7,7 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	draw_line(ceiling.position, ball.position, Color.RED)
+
+func hit_ball():
+	await get_tree().create_timer(1).timeout
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bqbs8sfj7xuy3"]
+[gd_scene load_steps=16 format=4 uid="uid://bqbs8sfj7xuy3"]
 
 [ext_resource type="Script" uid="uid://cdv0up8347d74" path="res://Levels/1stage/stage.gd" id="1_npxvv"]
 [ext_resource type="PackedScene" uid="uid://dirfn5jjv2xua" path="res://UI/HUD.tscn" id="2_a5hwm"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://5xgr8v8mcm5k" path="res://Dolphin/dolphin.tscn" id="6_bnby5"]
 [ext_resource type="Texture2D" uid="uid://bigvgkjj5wgw4" path="res://DownloadedAsset/SpearFishing Assets Pack/SpearFishing Assets Pack/Sprites/Diver-32x32/Diver 1.png" id="7_k71jj"]
 [ext_resource type="PackedScene" uid="uid://35cbg6gg0jkg" path="res://Resources/Camera/camera_2d.tscn" id="9_npxvv"]
+[ext_resource type="AudioStream" uid="uid://db8q0vq8m50i2" path="res://Resources/sounds/applause1.ogg" id="10_wni0a"]
+[ext_resource type="AudioStream" uid="uid://dgmpumn2v5kyj" path="res://Resources/sounds/applause2.ogg" id="11_qtr8r"]
+[ext_resource type="AudioStream" uid="uid://bbv15iu4patbf" path="res://Resources/sounds/wow-171498.mp3" id="12_bnby5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xpfvq"]
 texture = ExtResource("5_qtr8r")
@@ -192,6 +195,12 @@ terrain_set_0/terrain_0/name = "stone"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_xpfvq")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k71jj"]
+streams_count = 3
+stream_0/stream = ExtResource("10_wni0a")
+stream_1/stream = ExtResource("11_qtr8r")
+stream_2/stream = ExtResource("12_bnby5")
+
 [node name="Stage" type="Node2D"]
 script = ExtResource("1_npxvv")
 
@@ -246,5 +255,8 @@ position = Vector2(689, 174)
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_npxvv")]
 player = NodePath("../Dolphin")
 smoothing_distance = 3
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_k71jj")
 
 [connection signal="timeout" from="Spawner/HoopTimer" to="." method="_on_hoop_timer_timeout"]
