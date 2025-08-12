@@ -1,14 +1,16 @@
-extends Node
+extends CanvasLayer
 
-@onready var animation_player = find_child('AnimationPlayer')
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 var scene_target
 var user_prefs: UserPreferences
 
 func change_scene(target: String) ->void:
+	print("SceneTransition: Requesting scene change to: ", target)
 	scene_target = target
-	animation_player.play("transition")
+	if scene_target == null:
+		print("ERROR: Could not load scene at path: ", target)
+		return
 	
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "transition":
-#		user_prefs.current_scene = anim_name
-		get_tree().change_scene_to_file(scene_target)
+	get_tree().change_scene_to_file(scene_target)
+	animation_player.play("transition")

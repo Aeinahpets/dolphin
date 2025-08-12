@@ -14,17 +14,21 @@ config/name="dolphin"
 run/main_scene="uid://bqbs8sfj7xuy3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*res://Resources/game_manager.gd"
 SceneTransition="*res://Resources/SceneTransition.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 

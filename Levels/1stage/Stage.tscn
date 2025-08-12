@@ -241,16 +241,16 @@ wait_time = 3.0
 autostart = true
 
 [node name="Position1" type="Marker2D" parent="Spawner"]
-position = Vector2(211, 166)
+position = Vector2(211, 189)
 
 [node name="Position2" type="Marker2D" parent="Spawner"]
-position = Vector2(356, 165)
+position = Vector2(356, 188)
 
 [node name="Position3" type="Marker2D" parent="Spawner"]
-position = Vector2(547, 166)
+position = Vector2(547, 189)
 
 [node name="Position4" type="Marker2D" parent="Spawner"]
-position = Vector2(689, 174)
+position = Vector2(689, 197)
 
 [node name="Camera2D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_npxvv")]
 player = NodePath("../Dolphin")

@@ -3,7 +3,7 @@ class_name UserPreferences extends Resource
 #Scene Data
 var save_name: String = "No Name"
 var save_timestamp: float = 0.0
-var current_scene: StringName
+var current_scene: String
 
 	
 static func load_or_create() -> UserPreferences:

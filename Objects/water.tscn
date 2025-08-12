@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bw7bnnnmpb4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(2193, 1466)
+size = Vector2(2193, 1451)
 
 [node name="Water" type="ColorRect"]
 offset_left = -977.0
@@ -14,5 +14,5 @@ color = Color(0.313726, 0.72549, 0.921569, 1)
 position = Vector2(-2, -319)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterArea"]
-position = Vector2(1100.5, 1055)
+position = Vector2(1100.5, 1062.5)
 shape = SubResource("RectangleShape2D_epypp")

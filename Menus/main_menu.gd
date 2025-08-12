@@ -11,13 +11,14 @@ const SAVE_SLOTS = [
 
 
 func _on_new_game_pressed() -> void:
-	panel_slots.visible = true
-	user_prefs = UserPreferences.new()
-	user_prefs.current_scene = "res://Levels/1stage/Tank.tscn"
-	SceneTransition.change_scene(user_prefs.current_scene)
+	#panel_slots.visible = true
+	#user_prefs = UserPreferences.new()
+	#user_prefs.current_scene = "res://Levels/1stage/Tank.tscn"
+	#SceneTransition.change_scene(user_prefs.current_scene)
+	SceneTransition.change_scene("res://Levels/1stage/Stage.tscn")
 
 func _on_continue_pressed() -> void:
-	panel_slots.visible = true
+	#panel_slots.visible = true
 	if user_prefs:
 		user_prefs = UserPreferences.load_or_create()
 	

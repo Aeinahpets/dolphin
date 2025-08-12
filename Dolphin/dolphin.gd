@@ -35,10 +35,11 @@ var flip_speed: float = 720.0
 var confetti_scene = preload("res://Objects/Ball/Confetti.tscn")
 
 func _ready() -> void:
-	GameManager.end_stage.connect(on_end_stage)
+	#GameManager.end_stage.connect(on_end_stage)
+	pass
 	
 func _physics_process(delta: float):
-	if input_active or not is_in_water:
+	if input_active:
 		_get_input(delta)
 		match current_state:
 			State.SWIMMING:
@@ -46,31 +47,38 @@ func _physics_process(delta: float):
 			State.JUMPING:
 				_handle_jumping(delta)
 			State.DIVING:
-					_handle_dive(delta)
+				_handle_dive(delta)
 
-		if is_flipping:
-			var rotation_step = flip_speed * delta
-			sprite_holder.rotation += deg_to_rad(rotation_step)
-			flip_angle += rotation_step
-
-			if flip_angle >= 360.0:
-				is_flipping = false
-				sprite_holder.rotation = 0.0 # Reset rotation to upright
 		move_and_slide()
 			
 func _get_input(delta):
-	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	# Get input direction
+	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 
-	if direction.length() > 0.1:
+	if direction.length() > 0.1 and not is_in_water:
+		# If there's input, face input direction
 		var target_angle = direction.angle()
-		sprite_holder.rotation = lerp_angle(sprite_holder.rotation, target_angle, delta * 5.0)
-		if abs(target_angle) > PI / 2:
-			sprite.scale.y = -1 
-		else:
-			sprite.scale.y = 1
+		_rotate_toward_angle(target_angle, delta)
+		
+		_update_sprite_flip(target_angle)
 	else:
-		pass
-			
+		# If no input, face the direction of movement (velocity)
+		if velocity.length() > 0.1:  # Only rotate if moving
+			var movement_angle = velocity.angle()
+			_rotate_toward_angle(movement_angle, delta)
+			_update_sprite_flip(movement_angle)
+
+func _rotate_toward_angle(target_angle, delta):
+	# Smoothly rotate toward target_angle
+	sprite_holder.rotation = lerp_angle(sprite_holder.rotation, target_angle, delta * 5.0)
+
+func _update_sprite_flip(angle):
+	# Flip sprite based on angle (assuming right is 0 rad)
+	if cos(angle) < 0:  # Moving left (angle in left half)
+		sprite.scale.y = -1
+	else:
+		sprite.scale.y = 1
+		
 func _handle_swimming(delta: float):
 	velocity = velocity.lerp(direction * swim_speed, swim_acceleration * delta)
 	sprite.play("swim")
@@ -107,7 +115,7 @@ func _on_water_detector_area_entered(area: Area2D) -> void:
 		if current_state == State.JUMPING and velocity.y > 0:
 			current_state = State.DIVING
 			dive_force = clamp(velocity.y, swim_speed, swim_speed*2) # Or based on jump height
-			dive_timer = max_dive_duration * (dive_force / (swim_speed*2))
+			dive_timer = max_dive_duration * (clamp(velocity.y, 0, swim_speed * 2) / (swim_speed * 2))
 			velocity.x *= HORIZONTAL_SWIM_MULTIPLIER
 	if area.is_in_group("Spike"):
 		GameManager.is_damaged.emit(20)
@@ -134,31 +142,13 @@ func _handle_dive(delta: float):
 	if dive_timer <= 0.0:
 		current_state = State.SWIMMING
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("flip"):
-		do_flip()
-		
-func do_flip():
-	if current_state == State.JUMPING :
-		is_flipping = true
-		flip_angle = 0.0
-		
-		var rotation_step = 1
-		sprite_holder.rotation += deg_to_rad(rotation_step)
-		flip_angle += rotation_step
-
-		if flip_angle >= 360.0:
-			is_flipping = false
-			sprite_holder.rotation = 0.0
-
-
 func _on_water_detector_body_entered(body: Node2D) -> void:
 	if body.is_in_group("ball"):
 		body.get_parent().hit_ball()
 		body.apply_central_impulse(direction * 30)
 		var confetti = confetti_scene.instantiate()
 		confetti.global_position = body.global_position
-		get_tree().current_scene.add_child(confetti)
+		get_tree().root.add_child(confetti)
 		confetti.emitting = true
 		GameManager.hit_object.emit(self, position)
 

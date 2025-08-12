@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bl51gyns4xqay" path="res://Menus/end_screen.tscn" id="2_ijstf"]
 
 [node name="Hud" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_yixhe")
 
 [node name="Oxigen" type="HBoxContainer" parent="."]
