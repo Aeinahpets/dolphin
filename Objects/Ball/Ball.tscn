@@ -12,6 +12,7 @@ script = ExtResource("1_01snn")
 [node name="Ball" type="RigidBody2D" parent="." groups=["ball"]]
 collision_mask = 3
 mass = 0.1
+gravity_scale = 0.3
 
 [node name="Ball" type="Sprite2D" parent="Ball"]
 position = Vector2(0, -1)
@@ -31,4 +32,5 @@ shape = SubResource("CircleShape2D_01snn")
 position = Vector2(0, -95)
 node_a = NodePath("../Ceiling")
 node_b = NodePath("../Ball")
-length = 5.0
+length = 10.0
+damping = 0.3

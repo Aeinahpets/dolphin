@@ -37,6 +37,7 @@ func _on_hoop_timer_timeout() -> void:
 		spawn_objects()
 
 func object_hit(object, point):
+	print(point)
 	audio.play()
 	available_spawn_points.append(point)
 	taken_spawn_points.erase(point)
