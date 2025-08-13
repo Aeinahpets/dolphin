@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://27tvq0ryglw2"
+path="res://.godot/imported/talk_to_GF.dialogue-4bc2d996c5c6c75284059f568c56f28e.tres"
+
+[deps]
+
+source_file="res://Diologues/talk_to_GF.dialogue"
+dest_files=["res://.godot/imported/talk_to_GF.dialogue-4bc2d996c5c6c75284059f568c56f28e.tres"]
+
+[params]
+
+defaults=true

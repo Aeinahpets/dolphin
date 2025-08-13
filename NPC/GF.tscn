@@ -89,3 +89,14 @@ animation = &"swim"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("CircleShape2D_q4vgi")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -5.0
+offset_top = -35.0
+offset_right = 6.0
+offset_bottom = -12.0
+text = "E"
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
+[connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
